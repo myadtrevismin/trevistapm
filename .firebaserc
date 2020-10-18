@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "trevipam-528e3"
+  },
+  "targets": {
+    "trevipam-528e3": {
+      "hosting": {
+        "trevipam": [
+          "trevipam-528e3"
+        ]
+      }
+    }
+  }
+}
