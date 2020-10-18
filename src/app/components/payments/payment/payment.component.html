@@ -1,0 +1,41 @@
+<div class="jumbotron">
+  <button mat-raised-button (click)="addPayment()"> Add Payment </button>
+
+  <div class="mat-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef> Amount </th>
+        <td mat-cell *matCellDef="let row"> {{row.amount | currency}} </td>
+      </ng-container>
+      <ng-container matColumnDef="payDate">
+        <th mat-header-cell *matHeaderCellDef> Payment Date </th>
+        <td mat-cell *matCellDef="let row">{{row.payDate | firedate}}</td>
+      </ng-container>
+      <ng-container matColumnDef="paymentType">
+        <th mat-header-cell *matHeaderCellDef> Payment Type </th>
+        <td mat-cell *matCellDef="let row">{{row.paymentType}} </td>
+      </ng-container>
+      <ng-container matColumnDef="paidBy">
+        <th mat-header-cell *matHeaderCellDef> Paid By </th>
+        <td mat-cell *matCellDef="let row">{{row.paidBy}}</td>
+      </ng-container>
+      <ng-container matColumnDef="notes">
+        <th mat-header-cell *matHeaderCellDef> Notes </th>
+        <td mat-cell *matCellDef="let row">{{row.notes}}</td>
+      </ng-container>
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let row">
+          <a mat-icon-button (click)="edit(row)"><mat-icon>edit</mat-icon></a>
+          <a mat-icon-button (click)="deleteDocument(row)"><mat-icon>delete_forever</mat-icon></a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+  </div>
+
+</div>

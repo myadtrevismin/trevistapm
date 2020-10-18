@@ -1,0 +1,32 @@
+<mat-tab-group>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">list</mat-icon>
+      List
+    </ng-template>
+    <ng-template matTabContent>
+      <app-tasklist></app-tasklist>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">calendar_today</mat-icon>
+      Calendar
+    </ng-template>
+    <ng-template matTabContent>
+      <app-taskcalendar [events]= "tasks"></app-taskcalendar>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">view_agenda</mat-icon>
+      Kanban
+    </ng-template>
+
+    <ng-template matTabContent>
+      <app-kanban [events]= "tasks"></app-kanban>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

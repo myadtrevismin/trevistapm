@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Add A Team</h1>
+<div mat-dialog-content>
+  <form [formGroup]="teamForm">
+    <div class="form-group">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" name="name">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="outline">
+        <mat-label>Add members</mat-label>
+        <mat-select placeholder="Members" multiple formControlName="members" name="members">
+          <mat-option *ngFor="let user of users" [value]="user">
+            {{user.fullname}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="teamForm" cdkFocusInitial>Ok</button>
+</div>
+

@@ -1,0 +1,70 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h4 class="display-4">Welcome to Trevista Project Manager</h4>
+    <p class="lead">Tracker of Internal Work</p>
+    <hr class="my-2">
+
+    <div class="container m-2">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body text-center">
+              <h3 class="card-title">Projects</h3>
+              <p class="card-text">{{projects.length}}</p>
+              <button mat-raised-button (click)="navigatetoroute('/user/projects')" color="primary">Go</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body text-center">
+              <h3 class="card-title">Discussions</h3>
+              <p class="card-text">{{discussions.length}}</p>
+              <button mat-raised-button (click)="navigatetoroute('/user/discussions')" color="primary">Go</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body text-center">
+              <h3 class="card-title">Tasks</h3>
+              <p class="card-text">{{tasks.length}}</p>
+              <button mat-raised-button (click)="navigatetoroute('/user/tasks')" color="primary">Go</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container m-2">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body text-center">
+              <h3 class="card-title">Teams</h3>
+              <p class="card-text">{{teams.length}}</p>
+              <button mat-raised-button (click)="navigatetoroute('/user/teams')" color="primary">Go</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body text-center">
+              <h3 class="card-title">Files</h3>
+              <p class="card-text">{{files.length}}</p>
+              <button mat-raised-button (click)="navigatetoroute('/user/files')" color="primary">Go</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body text-center">
+              <h3 class="card-title">Payments</h3>
+              <p class="card-text">{{payments.length}}</p>
+              <button mat-raised-button (click)="navigatetoroute('/user/payments')" color="primary">Go</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

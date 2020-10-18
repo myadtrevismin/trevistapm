@@ -1,0 +1,68 @@
+<div class="container m-2">
+  <div class="d-flex justify-content-end">
+    <a class="btn btn-primary" role="button" (click)="addTask()">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd"
+          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+      </svg> Add Task
+    </a>
+  </div>
+  <div class="container m-2">
+    <div *ngIf="tasks.length === 0">
+      <div class="default-list">
+        <div class="def-circle">
+          <svg width="8em" height="8em" viewBox="0 0 16 16" class="bi bi-card-list m-auto" fill="#ffffff"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
+            <path fill-rule="evenodd"
+              d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5z" />
+            <circle cx="3.5" cy="5.5" r=".5" />
+            <circle cx="3.5" cy="8" r=".5" />
+            <circle cx="3.5" cy="10.5" r=".5" />
+          </svg>
+        </div>
+        <div class="task-p">
+          <h4>Create tasks for your Project</h4>
+          <a class="btn btn-primary" (click)="addTask()" role="button">Create A Task</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4" *ngFor="let task of tasks">
+        <div class="card m-2">
+          <div class="card-header d-flex justify-content-between">
+            <h5>
+              {{task.name}}
+            </h5>
+            <div>
+              <span><a mat-icon-button [matMenuTriggerFor]="menu">
+                  <mat-icon>menu</mat-icon>
+                </a>
+                <mat-menu #menu="matMenu">
+                  <a mat-menu-item (click)="editClick(task)">
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit</span>
+                  </a>
+                  <a mat-menu-item>
+                    <mat-icon>delete_forever</mat-icon>
+                    <span>Delete</span>
+                  </a>
+                </mat-menu>
+              </span>
+              <mat-icon (click)="downloadFile(task)">cloud_download</mat-icon>
+            </div>
+
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">{{task.status}}</h3>
+            <p class="card-text">{{task.startDate | firedate}} - {{task.endDate | firedate}}</p>
+            <p class="card-text">{{task.notes}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

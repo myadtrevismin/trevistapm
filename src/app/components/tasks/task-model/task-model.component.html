@@ -1,0 +1,92 @@
+<h2 mat-dialog-title>New Task</h2>
+<mat-dialog-content class="mat-typography">
+  <form class="task-form" [formGroup]="taskForm">
+    <div class="form-group">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Duration</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate formControlName="startDate" placeholder="Start date">
+          <input matEndDate formControlName="endDate" placeholder="End date">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select placeholder="Status" formControlName="status" name="status">
+          <mat-option *ngFor="let item of taskStatus" [value]="item.status">
+            {{item.status}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Assigned To</mat-label>
+        <mat-select placeholder="Assigned To" multiple formControlName="assignedTo" name="assignedTo">
+          <mat-option *ngFor="let user of users" [value]="user.userid">
+            {{user.username}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Assignment Group</mat-label>
+        <mat-select placeholder="Assignment Group" formControlName="assignmentGroup" name="assignmentGroup">
+          <mat-option *ngFor="let group of groups" [value]="group.id">
+            {{group.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field hidden class="w-100">
+        <mat-label>Created By</mat-label>
+        <input matInput formControlName="createdBy">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field hidden class="w-100">
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker1">
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Project Id</mat-label>
+        <mat-select placeholder="Project" formControlName="projectId" name="projectId">
+          <mat-option *ngFor="let item of projects" [value]="item.id">
+            {{item.projectName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <div class="custom-file">
+        <mat-label>Files</mat-label>
+        <input type="file" class="custom-file-input" (change)="handleFileInput($event.target.files)" id="customFile">
+        <label class="custom-file-label" for="customFile">Choose file</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="w-100">
+        <textarea matInput placeholder="Notes" formControlName="notes" name="notes"></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="onSubmit()" [mat-dialog-close]="true" cdkFocusInitial>Save</button>
+</mat-dialog-actions>

@@ -1,0 +1,26 @@
+.default-list{
+  margin: auto;
+  display: flex;
+  width: 100%;
+  min-height: 350px;
+  justify-content: center;
+  vertical-align: middle;
+  flex-direction: column;
+}
+
+.def-circle{
+  display: flex;
+  width: 12em;
+  height: 12em;
+  justify-content: center;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #cfc3c3 !important;
+  border-radius: 6rem !important;
+  margin: auto;
+}
+
+.task-p{
+  margin: auto;
+  text-align: center;
+}

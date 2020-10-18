@@ -1,0 +1,70 @@
+<div class="container m-2">
+  <!-- *ngIf="!files.length" -->
+  <div class="d-flex justify-content-end m-2">
+    <a class="btn btn-primary" (click)="IsUpload = true" role="button">Add Files</a>
+  </div>
+  <div *ngIf="IsUpload">
+    <div class="container-dir" appDragndir (fileDropped)="dropped($event)" [ngStyle]="{'background-color': '#333' }">
+      <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowse($event.target.files)"
+        accept="image/gif, image/jpeg, image/png" />
+      <h3 class="text-light">Drag a File here</h3>
+      <h3 class="text-white">Or</h3>
+      <!-- <label class="text-light" for="fileDropRef">Select a Photo</label> -->
+      <a class="btn btn-md btn-primary">Select a File</a>
+    </div>
+    <div class="info" *ngFor="let file of files">
+      <div class="container m-2">
+        <div class="row">
+          <div class="col">
+            <h4 class="name">
+              {{ file.name }}
+            </h4>
+            <p class="size" *ngIf="files.length>0">
+              {{file.progress}}% of {{ formatBytes(file.size,0) }}
+            </p>
+          </div>
+          <div class="col">
+            <mat-progress-bar mode="buffer" [color]="'primary'" [value]="file.progress" [bufferValue]="file.progress">
+            </mat-progress-bar>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center mt-2">
+      <button type="button" class="btn btn-warning" (click)="onUpload()">Upload Files</button>
+    </div>
+  </div>
+</div>
+<div class="container m-2">
+  <div class="mat-container mat-elevation-z8">
+    <table mat-table #table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="sno" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> S.No. </th>
+        <td mat-cell *matCellDef="let i = index">
+        {{this.paginator.pageIndex == 0 ? i + 1 : 1 + i + this.paginator.pageIndex * this.paginator.pageSize}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.fileName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="created">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+        <td mat-cell *matCellDef="let row"> {{row.createdDt | firedate}} </td>
+      </ng-container>
+      <ng-container matColumnDef="uploadedBy">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Uploaded By </th>
+        <td mat-cell *matCellDef="let row"> {{row.createdBy}} </td>
+      </ng-container>
+      <ng-container matColumnDef="download">
+        <th mat-header-cell *matHeaderCellDef > </th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button (click)="download(row)"><mat-icon>cloud_download</mat-icon></button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>

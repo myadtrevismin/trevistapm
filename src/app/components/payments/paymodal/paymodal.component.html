@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>Payment</h1>
+<div mat-dialog-content>
+  <form [formGroup]="payForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Amount</mat-label>
+      <input matInput formControlName="amount">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Payment Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="payDate">
+      <mat-datepicker-toggle matSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>paymentType</mat-label>
+      <mat-select placeholder="Payment Type" formControlName="paymentType">
+        <mat-option value="InComing">
+          InComing
+        </mat-option>
+        <mat-option value="Outgoing">
+          Outgoing
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Status</mat-label>
+      <mat-select placeholder="Status" formControlName="status">
+        <mat-option value="Pending">
+          Pending
+        </mat-option>
+        <mat-option value="Completed">
+          Completed
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Paid By</mat-label>
+      <input matInput  formControlName="paidBy">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Notes</mat-label>
+      <textarea matInput  formControlName="notes"></textarea>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="payForm" cdkFocusInitial>Ok</button>
+</div>
